@@ -1,16 +1,20 @@
-const textRating = document.querySelector('.rating__value').textContent
-const stars = document.querySelectorAll('.rating__star')
+let textRating = document.querySelector(".rating__value");
+const stars = document.querySelectorAll(".rating__star");
 
 stars.forEach((star, index) => {
-    star.addEventListener('click', (e) => {
-        console.log('The stars NodeList:')
-        console.log(stars)
-        console.log('The clicked star element:')
-        console.log(star)
-        console.log('The index of the clicked star in the NodeList:')
-        console.log(index)
-        console.log('Rating expressed by text:')
-        console.log(textRating)
-        console.log('-------------------------------------------------------------------------')
-    })
-})
+  star.addEventListener("click", (e) => {
+    //removing the styling for all the stars
+    stars.forEach((element) => {
+      element.classList.remove("rating__star--on");
+    });
+
+    //getting the order
+    const order = index + 1;
+    //changing the text in the text
+    textRating.textContent = order;
+    //adding the styling for every star with index lower than the order
+    for (let i = 0; i < order; i++) {
+      stars[i].classList.add("rating__star--on");
+    }
+  });
+});
